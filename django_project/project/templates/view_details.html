@@ -1,0 +1,22 @@
+{% extends "doctor_dashboard.html" %}
+
+{% load static %}  <!-- Load static files -->
+
+{% block content %}
+<!-- Link to the external CSS file -->
+<link rel="stylesheet" href="{% static 'css/view_details.css' %}">
+
+<div class="content">
+    <h3>Doctor Profile</h3>
+    <div class="profile-info">
+        <p><strong>Doctor ID:</strong> {{ doctor.doctor_id }}</p>
+        <p><strong>Email:</strong> {{ doctor.email }}</p>
+        <p><strong>Age:</strong> {{ doctor.age }}</p>
+        <p><strong>Name:</strong> {{ doctor.username }}</p>
+        <p><strong>Gender:</strong> {{ doctor.gender }}</p>
+        <p><strong>Mobile Number:</strong> {{ doctor.mobile_number }}</p>
+        <p><strong>Degree:</strong> {{ doctor.degree }}</p>
+        <p><strong>Experience:</strong> {{ doctor.experience }} Years</p>
+    </div>
+</div>
+{% endblock %}

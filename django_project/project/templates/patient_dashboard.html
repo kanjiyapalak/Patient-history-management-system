@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Patient Dashboard</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/patient_dashboard.css' %}">
+    
+    </head>
+    
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="navbar">
+            <h2>Patient Dashboard</h2>
+            <ul>
+                <li><a href="#" onclick="showSection('profile')">View Profile</a></li>
+                <li><a href="#" onclick="showSection('manage')">Manage Profile</a></li>
+                <li><a href="#" onclick="showSection('prescription')">View Prescription</a></li>
+                <li><a href="#" onclick="showSection('appointments')">Show Appointments</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content">
+        <!-- View Profile -->
+<section id="profile" class="section active">
+    <h3> Patient details</h3>
+    <div class="profile-info">
+       
+        <p><strong>Patient ID:</strong> {{ patient.patient_id }}</p>
+        <p><strong>Email:</strong> {{ patient.email }}</p>
+        <p><strong>Name:</strong> {{ patient.username }}</p>
+        <p><strong>Age:</strong> {{ patient.age }}</p>
+        <p><strong>Gender:</strong> {{ patient.gender }}</p>
+        <p><strong>Address:</strong> {{ patient.address }}</p>
+        <p><strong>Mobile Number:</strong> {{ patient.mobile_number }}</p>
+    </div>
+</section>
+
+
+            <!-- Manage Profile -->
+            <section id="manage" class="section">
+                <h3>Manage Profile</h3>
+                <div class="button-container">
+                    <button class="update-btn" onclick="showSection('updateProfile')">Update Profile</button>
+                    <button class="delete-btn" onclick="deleteProfile()">Delete Profile</button>
+                </div>
+            </section>
+
+            <!-- Update Profile Form -->
+            <section id="updateProfile" class="section">
+                <h3>Update Profile</h3>
+                <form method="POST" action="{% url 'update_patient_profile' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" value="{{ patient.email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" name="age" value="{{ patient.age }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">User name:</label>
+                        <input type="text" name="name" value="{{ patient.username }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" value="{{ patient.address }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile_number">Mobile Number:</label>
+                        <input type="text" name="mobile_number" value="{{ patient.mobile_number }}" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Update Profile</button>
+                </form>
+            </section>
+
+            <!-- View Prescription -->
+            <section id="prescription" class="section">
+                <div id="prescription-content">
+                    <p>Loading prescriptions...</p> 
+                </div>
+            </section>
+
+            <!-- View Appointments -->
+            <section id="appointments" class="section">
+                <h3>Your Appointments</h3>
+                <div id="appointments-list">
+                    <p>Loading appointments...</p> 
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            let section = document.getElementById(sectionId);
+            section.classList.add('active');
+
+            // Fetch prescription data when "View Prescription" is clicked
+            if (sectionId === 'prescription') {
+                fetch("{% url 'patient_view_prescription' %}")
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('prescription-content').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error fetching prescription:', error));
+            }
+
+            // Fetch appointments when "Show Appointments" is clicked
+            if (sectionId === 'appointments') {
+                fetch("{% url 'patient_show_appointment' %}")
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('appointments-list').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error fetching appointments:', error));
+            }
+        }
+
+        function deleteProfile() {
+            if (confirm("Are you sure you want to delete your profile? This action cannot be undone.")) {
+                window.location.href = "{% url 'delete_patient_profile' %}";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "doctor_dashboard.html" %}
+{% load static %} 
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/manage_profile.css' %}">
+<div class="container">
+    <h2>Manage Profile</h2>
+    
+    <a href="{% url 'update_profile' %}" class="btn">Update Profile</a>
+    <a href="{% url 'delete_profile' %}" class="btn delete">Delete Profile</a>
+</div>
+{% endblock %}

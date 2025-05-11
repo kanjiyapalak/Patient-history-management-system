@@ -1,0 +1,78 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Content Wrapper */
+.content {
+    max-width: 500px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h3 {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Success & Error Messages */
+p {
+    text-align: center;
+    font-size: 16px;
+}
+
+p[style="color: green;"] {
+    color: green;
+    font-weight: bold;
+}
+
+p[style="color: red;"] {
+    color: red;
+    font-weight: bold;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}

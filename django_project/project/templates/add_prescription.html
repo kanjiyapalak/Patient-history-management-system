@@ -1,0 +1,27 @@
+{% extends "doctor_dashboard.html" %}
+
+{% load static %}  <!-- Load static files -->
+
+{% block content %}
+<!-- Link to the external CSS file -->
+<link rel="stylesheet" href="{% static 'css/add_prescription.css' %}">
+
+<div class="content">
+    <h3>Add Prescription</h3>
+
+    <!-- Display success or error messages -->
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+
+    {% if form.errors %}
+        <p style="color: red;">Please correct the errors below.</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Django form rendering -->
+        <button type="submit" class="submit-btn">Add Prescription</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/manage_profile.css' %}">
+<div class="container">
+    <h2>Delete Profile</h2>
+    <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn delete">Delete</button>
+    </form>
+</div>
+{% endblock %}

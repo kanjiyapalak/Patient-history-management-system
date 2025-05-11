@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appointment</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/add_appointment.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>Receptionist Dashboard</h2>
+            <ul>
+                <li><a href="{% url 'add_appointment' %}">Add Appointment</a></li>
+                <li><a href="{% url 'manage_appointments' %}">Manage Appointments</a></li>
+                <li><a href="{% url 'show_appointments' %}">Show Appointments</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="form-container">
+                <h3>Add Appointment</h3>
+                <form method="POST" action="{% url 'add_appointment' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="doctor_id">Doctor ID:</label>
+                        <input type="number" name="doctor_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="patient_id">Patient ID:</label>
+                        <input type="number" name="patient_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_date">Appointment Date:</label>
+                        <input type="date" name="appointment_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_time">Appointment Time:</label>
+                        <input type="time" name="appointment_time" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

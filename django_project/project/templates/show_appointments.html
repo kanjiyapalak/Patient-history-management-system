@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Appointments</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/show_appointments.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>Receptionist Dashboard</h2>
+            <ul>
+                <li><a href="{% url 'add_appointment' %}">Add Appointment</a></li>
+                <li><a href="{% url 'manage_appointments' %}">Manage Appointments</a></li>
+                <li><a href="{% url 'show_appointments' %}">Show Appointments</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h3>Show Appointments</h3>
+
+            <div class="search-container">
+                <form method="GET">
+                    <label for="patient_id">Search by Patient ID:</label>
+                    <input type="text" name="patient_id" placeholder="Enter Patient ID" required>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+
+            {% if patient %}
+            <div class="table-container">
+                <h4>Patient Name: {{ patient.username }}</h4>
+                <h4>Patient ID: {{ patient.patient_id}}</h4>
+                <table>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Doctor ID</th>
+                        <th>Doctor name</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                    </tr>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.id }}</td>
+                        <td>{{ appointment.doctor.doctor_id }}</td>
+                        <td>{{ appointment.doctor.username }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                {% if request.GET.patient_id %}
+                    <p>No patient found with the given ID.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

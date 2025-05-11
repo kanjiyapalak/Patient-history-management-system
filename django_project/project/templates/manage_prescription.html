@@ -1,0 +1,11 @@
+{% extends "doctor_dashboard.html" %}
+{% load static %} 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/manage_prescription.css' %}">
+<div class="container">
+    <h2>Manage Prescription</h2>
+    <a href="{% url 'add_prescription' %}" class="btn">Add Prescription</a>
+    <a href="{% url 'view_prescription' %}" class="btn">View Prescriptions</a>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "doctor_dashboard.html" %}
+
+{% load static %}  <!-- Load static files -->
+
+{% block content %}
+<!-- Link to the external CSS file -->
+<link rel="stylesheet" href="{% static 'css/view_prescription.css' %}">
+
+<div class="content">
+    <h3>View Prescription</h3>
+
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'view_prescription' %}">
+        <div class="form-group">
+            <label for="patient_id">Enter Patient ID:</label>
+            <input type="text" name="patient_id" required>
+        </div>
+        <button type="submit" class="submit-btn">Search</button>
+    </form>
+
+    <!-- Display Prescription Details -->
+    {% if prescriptions %}
+        <h4>Prescriptions for Patient ID: {{ patient_id }}</h4>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prescription in prescriptions %}
+                <tr>
+                    <td>{{ prescription.patient.username }}</td>
+                    <td>{{ prescription.details }}</td>
+                    <td>{{ prescription.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif patient_id %}
+        <p>No prescriptions found for Patient ID: {{ patient_id }}</p>
+    {% endif %}
+</div>
+{% endblock %}

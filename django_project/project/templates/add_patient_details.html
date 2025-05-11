@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Patient Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_patient_details.css' %}">
+</head>
+<body>
+    <div class="patient-container">
+        <h2>Complete Your Patient Profile</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Appointments</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/manage_appointment.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>Receptionist Dashboard</h2>
+            <ul>
+                <li><a href="{% url 'add_appointment' %}">Add Appointment</a></li>
+                <li><a href="{% url 'manage_appointments' %}">Manage Appointments</a></li>
+                <li><a href="{% url 'show_appointments' %}">Show Appointments</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h3>Manage Appointments</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Doctor</th>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+                
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.doctor.username }}</td>
+                    <td>{{ appointment.patient.username }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.appointment_time }}</td>
+                    <td>
+                        <a href="{% url 'update_appointment' appointment.id %}">Update</a> |
+                        <a href="{% url 'delete_appointment' appointment.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</body>
+</html>

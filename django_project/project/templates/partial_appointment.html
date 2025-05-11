@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointments</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/appointment_styles.css' %}">
+</head>
+<body>
+    <div class="appointment-container">
+        {% if appointments %}
+            <table class="appointment-table">
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>Dr. {{ appointment.doctor.username }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-appointment">No appointments found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

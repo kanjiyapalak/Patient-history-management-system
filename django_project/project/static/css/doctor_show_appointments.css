@@ -1,0 +1,47 @@
+.content {
+    width: 80%;
+    margin: 20px auto 20px 250px; /* Adjusted left margin to move content right */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+tbody tr:hover {
+    background: #f1f1f1;
+}
+
+td {
+    color: #333;
+}
+
+.no-appointments {
+    text-align: center;
+    color: red;
+}

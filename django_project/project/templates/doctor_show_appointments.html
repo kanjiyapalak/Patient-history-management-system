@@ -1,0 +1,35 @@
+{% extends "doctor_dashboard.html" %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/doctor_show_appointments.css' %}">
+
+<div class="content">
+    <h3>Your Appointments</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient.patient_id }}</td>
+                <td>{{ appointment.patient.username }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="no-appointments">No appointments found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Content Wrapper */
+.content {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h3 {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Profile Info */
+.profile-info {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info p {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 8px;
+    background: white;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+}
+
+.profile-info strong {
+    color: #333;
+}

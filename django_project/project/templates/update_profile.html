@@ -1,0 +1,29 @@
+{% extends "doctor_dashboard.html" %}
+{% load static %} 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update_profile.css' %}">
+
+<div class="container">
+    <h2>Update Profile</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ doctor.email }}" required>
+
+        <label>Age:</label>
+        <input type="number" name="age" value="{{ doctor.age }}" required>
+
+        <label>Mobile Number:</label>
+        <input type="text" name="mobile_number" value="{{ doctor.mobile_number }}" required>
+
+        <label>Degree:</label>
+        <input type="text" name="degree" value="{{ doctor.degree }}" required>
+
+        <label>Experience (Years):</label>
+        <input type="number" name="experience" value="{{ doctor.experience }}" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}
